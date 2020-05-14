@@ -1,9 +1,9 @@
 package probability
 
 import (
-	"github.com/L-F-Z/cee/graph"
 	"bytes"
 	"fmt"
+	"github.com/L-F-Z/cee/graph"
 )
 
 // Probability type

@@ -6,10 +6,13 @@ import (
 )
 
 // Identify main algo
-func Identify(y ,x, z []int64, g *graph.Graph) *probability.Probability {
+func Identify(y, x, z []int64, g *graph.Graph) *probability.Probability {
 	topo, _ := g.TopoSort()
-	p := probability.GenProbability(g)
 	v := g.NodeSlice()
+	p := probability.GenProbability(g)
+	if s := g.NodeID("$S$"); s != 0 { // need to recover causal effects from selection bias
+		return recover(y, x, v, s, p, g)
+	}
 	if len(z) == 0 {
 		return id(y, x, v, p, g, topo)
 	}

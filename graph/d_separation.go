@@ -10,8 +10,8 @@ func (g *Graph) DSeparation(x []int64, y []int64, z []int64) bool {
 	}
 	for _, nx := range x {
 		paths := g.GetAllPaths(nx, y)
-		forpath:
-		for _, path := range paths{
+	forpath:
+		for _, path := range paths {
 			g.MarkPath(&path)
 			for idx, c := range path.types {
 				if c == 'h' || c == 'f' {
@@ -20,7 +20,7 @@ func (g *Graph) DSeparation(x []int64, y []int64, z []int64) bool {
 					}
 				}
 			}
-			fornode:
+		fornode:
 			for idx, c := range path.types {
 				if c == 'c' {
 					node := path.nodes[idx]

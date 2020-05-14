@@ -11,10 +11,15 @@ func GenProbability(g *graph.Graph) *Probability {
 	to := *g.To()
 	topo, _ := g.TopoSort()
 	for _, n := range topo {
+		if !g.Observable(n) {
+			continue
+		}
 		p := NewProbability(g)
 		p.AddVariable(n)
 		for k := range to[n] {
-			p.AddCond(k)
+			if g.Observable(k) {
+				p.AddCond(k)
+			}
 		}
 		r.AddChildren(p)
 	}

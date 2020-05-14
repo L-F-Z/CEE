@@ -1,8 +1,8 @@
 package graph
 
 import (
-	"github.com/L-F-Z/cee/utils"
 	"fmt"
+	"github.com/L-F-Z/cee/utils"
 )
 
 // nodeSet defines a node set with pointer

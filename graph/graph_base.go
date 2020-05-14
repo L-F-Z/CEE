@@ -183,8 +183,10 @@ func (g *Graph) NodeName(ID int64) string {
 // NodeSlice return a slice of observable nodes
 func (g *Graph) NodeSlice() []int64 {
 	s := make([]int64, 0)
-	for k := range g.nodes {
-		s = append(s, k)
+	for k, n := range g.nodes {
+		if n.observable {
+			s = append(s, k)
+		}
 	}
 	return s
 }
@@ -198,4 +200,9 @@ func (g *Graph) HasEdge(A, B int64) bool {
 // To getter
 func (g *Graph) To() *map[int64]map[int64]bool {
 	return &g.to
+}
+
+// Observable getter
+func (g *Graph) Observable(n int64) bool {
+	return g.nodes[n].observable
 }

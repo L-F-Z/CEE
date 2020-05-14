@@ -1,13 +1,13 @@
 package identify
 
 import (
+	"fmt"
 	"github.com/L-F-Z/cee/graph"
 	"github.com/L-F-Z/cee/probability"
 	"github.com/L-F-Z/cee/utils"
-	"fmt"
 )
 
-func id(y []int64, x []int64, v []int64, p *probability.Probability, g *graph.Graph, topo []int64) *probability.Probability{
+func id(y []int64, x []int64, v []int64, p *probability.Probability, g *graph.Graph, topo []int64) *probability.Probability {
 	fmt.Println("ID y=", y, " x=", x, " v=", v, " p=", p)
 	// line 1
 	if len(x) == 0 {
@@ -99,7 +99,7 @@ func id(y []int64, x []int64, v []int64, p *probability.Probability, g *graph.Gr
 			list = append(list, pChild)
 		}
 		r := probability.NewProbability(p.Graph())
-		if len(s) > 1{
+		if len(s) > 1 {
 			tmp := utils.SetMinus(s, y)
 			r.SetSumset(tmp)
 			for _, e := range list {
@@ -107,7 +107,7 @@ func id(y []int64, x []int64, v []int64, p *probability.Probability, g *graph.Gr
 			}
 			return r
 		}
-		if (pChild.Product() || pChild.Fraction()) {
+		if pChild.Product() || pChild.Fraction() {
 			tmp := utils.SetMinus(s, y)
 			pChild.AddSumsetSlice(tmp)
 		} else {

@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/L-F-Z/cee/graph"
 	"github.com/L-F-Z/cee/identify"
-	"fmt"
-	"encoding/json"
 	"io/ioutil"
 	"os"
 )
@@ -16,13 +16,18 @@ func main() {
 	}
 	str, _ := ioutil.ReadFile(os.Args[1])
 	var dat map[string]interface{}
-    if err := json.Unmarshal(str, &dat); err != nil {
-        panic(err)
-    }
+	if err := json.Unmarshal(str, &dat); err != nil {
+		panic(err)
+	}
 	fmt.Println("NODES")
 	nodes := dat["nodes"].([]interface{})
 	for _, e := range nodes {
 		node := e.(string)
+		if node == "$S$" {
+			g.AddNode(node, false)
+			fmt.Println(node)
+			continue
+		}
 		g.AddNode(node, true)
 		fmt.Println(node)
 	}

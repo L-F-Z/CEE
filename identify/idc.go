@@ -1,13 +1,13 @@
 package identify
 
 import (
+	"fmt"
 	"github.com/L-F-Z/cee/graph"
 	"github.com/L-F-Z/cee/probability"
 	"github.com/L-F-Z/cee/utils"
-	"fmt"
 )
 
-func idc(y, x, z, v []int64, p *probability.Probability, g *graph.Graph, topo []int64) *probability.Probability{
+func idc(y, x, z, v []int64, p *probability.Probability, g *graph.Graph, topo []int64) *probability.Probability {
 	fmt.Println("IDC y=", y, " x=", x, " z=", z, " v=", v, " p=", p)
 	// line 1
 	subg := g.Subgraph(x, z)
